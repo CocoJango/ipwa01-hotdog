@@ -1,0 +1,75 @@
+* {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+body {
+    margin: 3em;
+}
+
+header {
+    width: 100%;
+    background-color: #e2e2e2;
+}
+
+h1 {
+    font-size: 1.75rem;
+    margin: 1em 0em;
+}
+
+h1 > span {
+    color: brown;
+}
+
+h2 {
+    font-size: 2.2rem;
+    padding-top: 0.75em;
+}
+
+div.additionalInfo {
+    font-size: 0.75em;
+}
+
+.components {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: start;
+    align-items: stretch;
+    align-content: start;
+    gap: 1.5em;
+    margin: 2em 0;
+}
+
+.components > div {
+    padding: 2em;
+    border-radius: 8px !important;
+    border: 1px solid lightgrey !important;
+    width: 200px !important;
+    flex: 0 0 auto;
+}
+
+table.prices{
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left:auto;
+    width: 40%;
+}
+
+.qrcode {
+    max-width: 40%;
+}
+
+.font-size-bigger, .ui-button[type=submit] {
+    font-size: 1.25em !important;
+}
+
+.margin-big {
+    margin: 1.9em 0;
+}

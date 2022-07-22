@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+    <title>Hotdogs4All</title>
+</h:head>
+<h:body>
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="primeflex.min.css"/>
+        <h:outputStylesheet library="css" name="custom.css"/>
+    </f:facet>
+
+    <f:metadata>
+        <f:viewParam name="order" value="#{feedback.order}"/>
+    </f:metadata>
+
+    <h1>Feedback</h1>
+
+    <p:staticMessage severity="info" summary="DANKE"
+                     detail="Vielen Dank für das Feedback, es wurde erfolgreich gespeichert."
+                     rendered="#{param['message']}" style="width: 100%; margin-bottom: 1em;"/>
+
+    <h:form>
+        <div class="ui-fluid">
+            <div class="p-field">
+                <p:outputLabel value="Name" for="name"/>
+                <p:inputText id="name" value="#{feedback.name}"/>
+            </div>
+            <div class="p-field">
+                <p:outputLabel value="E-Mail" for="email"/>
+                <p:inputText id="email" type="e-mail" value="#{feedback.email}"/>
+            </div>
+            <div class="p-field">
+                <p:outputLabel value="Nachricht" for="message"/>
+                <p:inputTextarea id="message" value="#{feedback.message}" required="true"
+                                 requiredMessage="Pflichtfeld"/>
+            </div>
+            <p:commandButton type="submit" value="Senden" action="#{feedback.saveFeedback}"/>
+        </div>
+    </h:form>
+
+</h:body>
+</html>

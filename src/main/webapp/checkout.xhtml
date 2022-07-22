@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+    <title>Hotdogs4All</title>
+</h:head>
+<h:body>
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="primeflex.min.css"/>
+        <h:outputStylesheet library="css" name="custom.css"/>
+    </f:facet>
+
+    <div class="p-text-center">
+        <h1>Bestellung abgeschlossen</h1>
+
+        <h:outputText value="Bitte #{shop.formatEuro(hotdogController.hotdog.discountedPrice)} abkassieren"/>
+        <br></br><br></br>
+        <p:button outcome="index" value="Neue Bestellung" styleClass="font-size-bigger"/>
+
+
+        <br></br><br></br>
+
+        <h1>Feedback</h1>
+
+        <p:barcode value="#{shop.feedbackUrl(hotdogController.hotdog)}" type="qr" styleClass="qrcode" width="400px"/>
+        <br></br>
+        <p:link outcome="feedback" value="TEST: QR-Code Link">
+            <f:param name="order" value="#{hotdogController.hotdog.id}"/>
+        </p:link>
+    </div>
+
+</h:body>
+</html>

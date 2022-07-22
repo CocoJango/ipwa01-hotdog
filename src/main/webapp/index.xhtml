@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+    <title>Hotdogs4All</title>
+</h:head>
+<h:body>
+    <f:facet name="last">
+        <h:outputStylesheet library="css" name="primeflex.min.css"/>
+        <h:outputStylesheet library="css" name="custom.css"/>
+    </f:facet>
+
+    <h:form id="hotdog">
+        <h1>Hotdog konfigurieren</h1>
+
+        <p:selectManyButton styleClass="components" value="#{hotdogController.selectedIngredients}"
+                            id="selectedIngredients">
+            <p:ajax listener="#{hotdogController.selectedIngredientsChanged()}"
+                    update="price,discount,discountedPrice,discountMoney"
+                    event="change"/>
+            <f:selectItems value="#{shop.ingredients}" var="ingredient" itemValue="#{ingredient}"
+                           itemLabel="#{ingredient.name}&lt;br&gt;#{shop.formatEuro(ingredient.price)}"
+                           itemLabelEscaped="false"/>
+        </p:selectManyButton>
+
+        <div class="p-text-right font-size-bigger">
+            <table class="prices">
+                <tr>
+                    <td class="p-text-left">Preis</td>
+                    <td></td>
+                    <td class="p-text-right">
+                        <h:outputText id="price" value="#{shop.formatEuro(hotdogController.hotdog.price)}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="p-text-left">Rabatt</td>
+                    <td><h:outputText id="discount" value="#{hotdogController.hotdog.discount * 100}"/> %</td>
+                    <td class="p-text-right">
+                        <h:outputText id="discountMoney"
+                                      value="#{shop.formatEuro(hotdogController.hotdog.discountEuro)}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="p-text-left">Rabattierter Preis</td>
+                    <td></td>
+                    <td class="p-text-right">
+                        <h:outputText id="discountedPrice"
+                                      value="#{shop.formatEuro(hotdogController.hotdog.discountedPrice)}"/>
+                    </td>
+                </tr>
+            </table>
+            <p:commandButton value="Hotdog kaufen" id="buy"
+                             action="#{shop.buy()}"
+                             icon="pi pi-shopping-cart" iconPos="left"
+            />
+        </div>
+        <div class="additionalInfo">Brot und Wurst ausgenommen</div>
+
+
+    </h:form>
+</h:body>
+</html>
