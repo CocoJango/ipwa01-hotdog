@@ -1,9 +1,7 @@
 package hotdogs4all.ipwa01hotdog;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
-import jakarta.servlet.http.HttpSession;
 
 import java.text.DecimalFormat;
 import java.util.LinkedList;
@@ -21,8 +19,8 @@ public class Shop
 	public Shop()
 	{
 		// add basic configuration
-		ingredients.add(Ingredient.INDEX_BROT, new Ingredient("Brot", 1.5, true));
-		ingredients.add(Ingredient.INDEX_WURST, new Ingredient("Wurst", 2.5, true));
+		ingredients.add(new Ingredient("Brot", 1.5, true));
+		ingredients.add(new Ingredient("Wurst", 2.5, true));
 
 		// add other ingredients
 		ingredients.add(new Ingredient("Röstzwiebeln", 0.5));
@@ -46,19 +44,7 @@ public class Shop
 		return ingredients;
 	}
 
-	/**
-	 * Invalidates the current session so a new Hotdog can be created.
-	 * Redirects to the checkout page, afterwards.
-	 *
-	 * @return the name of the checkout page
-	 */
-	public String buy()
-	{
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(false);
-		httpSession.invalidate();
-		return "checkout";
-	}
+
 
 	/**
 	 * Generates the URL to the feedback page by concatenating the URL from the Shop instance and the id of the current Hotdog.

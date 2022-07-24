@@ -1,7 +1,9 @@
 package hotdogs4all.ipwa01hotdog;
 
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.Serializable;
 import java.util.List;
@@ -105,6 +107,20 @@ public class HotdogController implements Serializable
 
 		// round to two decimals
 		hotdog.setDiscountEuro(Math.round(discount * 100.0) / 100.0);
+	}
+
+	/**
+	 * Invalidates the current session so a new Hotdog can be created.
+	 * Redirects to the checkout page, afterwards.
+	 *
+	 * @return the name of the checkout page
+	 */
+	public String buy()
+	{
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		HttpSession httpSession = (HttpSession) facesContext.getExternalContext().getSession(false);
+		httpSession.invalidate();
+		return "checkout";
 	}
 
 }

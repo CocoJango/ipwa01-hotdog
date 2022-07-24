@@ -4,8 +4,7 @@ import java.util.Objects;
 
 public class Ingredient
 {
-	public static int INDEX_BROT = 0;
-	public static int INDEX_WURST = 1;
+
 	private String name;
 	private double price;
 	private boolean required;
