@@ -1,0 +1,5 @@
+.idea
+target
+
+!target/ipwa01-hotdog-1.0-SNAPSHOT.war
+.DS_Store
